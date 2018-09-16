@@ -4,14 +4,19 @@ import CaseListItem from './CaseListItem'
 
 class CaseList extends Component {
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.fetchCases();
   }
 
+  renderCaseItem(item) {
+    return (<CaseListItem case={supportCase} />);
+  }
+
   render() {
-    let cases = this.props.cases.map((supportCase) => {
-      return (<CaseListItem case={supportCase} />);
-    });
+    if (!this.props.cases || this.props.cases.isEmpty()) {
+      return; //TODO: render empty view
+    }
+    let cases = this.props.cases.map(renderCaseItem);
 
     return (
     	<div>

@@ -1,19 +1,13 @@
 function getBaseUrl() {
-  if (process.env.NODE_ENV === 'development') {
-    return "http://localhost:3000/"
-  } else if (process.env.NODE_ENV === 'production') {
-    return "https://kode-review-server.herokuapp.com/"
-  } else {
-    return "https://api.kodereview.io/"
-  }
+    return 'http://localhost:3000/';
 }
 
 function fetchResponse(request) {
-  return fetch(request).then(response => {
-    return response.json();
-  }).catch(error => {
-    return error;
-  });
+    return fetch(request).then(response => {
+        return response.json();
+    }).catch(error => {
+        return error;
+    });
 }
 
 class CaseApi {
@@ -21,8 +15,8 @@ class CaseApi {
         const request = new Request(getBaseUrl() + `feed_items`, {
             method: 'GET',
             credentials: 'include'
-        })
-        return fetchResponse(request)
+        });
+        return fetchResponse(request);
     }
 }
 

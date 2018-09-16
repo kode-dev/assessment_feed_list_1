@@ -6,8 +6,8 @@ import { ListGroupItem } from 'react-bootstrap'
 class CaseListItem extends Component {
   render() {
     return (
-      <ListGroupItem 
-      	header={this.props.case.label}>{this.props.case.id + ' ' + this.props.case.clientEmail}
+      <ListGroupItem header={this.props.case.label}>
+      	{`${this.props.case.id} ${this.props.case.clientEmail}`}
       </ListGroupItem>
     );
   }

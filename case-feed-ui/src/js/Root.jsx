@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { HashRouter as Router } from 'react-router-dom';
 
 export default class Root extends Component {
-  get content() {
+  get content() { // ???????
     return (
       <Router>
         {this.props.routes}
