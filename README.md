@@ -10,6 +10,10 @@ We'd like your help to display the **last 20 submitted** AcmeCorp cases, which s
 
 This repository contains components to render a feed of support cases, along with a dummy API to pull more cases.
 
+## Prerequisites
+- [NodeJS and NPM](https://www.npmjs.com/get-npm)
+
+
 ## Layout
 * Landing Page
 * Case Detail Page
@@ -29,5 +33,16 @@ A case will contain:
 * **React-Bootstrap Components**: A set of common base components that you can use if you need to.
 
 ## Getting Started
+### Running the test server
+We have implemented a test server to represent the backend and database for this problem. 
+
+To start the server run these commands from the base directory:
+```
+cd feed-test-server
+npm install
+npm start
+```
+This will start the application server on port 3000.
+
 
 ## Testing
