@@ -19,7 +19,7 @@ const FeedItem = new Immutable.Record({
 });
 
 
-export default class FeedManager {
+class FeedManager {
     constructor() {
         this.feedItems = new Immutable.List();
         this.interval = null;
@@ -93,3 +93,5 @@ export default class FeedManager {
     }
 
 }
+
+module.export = FeedManager;
