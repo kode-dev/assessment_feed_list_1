@@ -4,10 +4,38 @@ const Immutable = require('immutable');
 const labels = require('./labels.json');
 const descriptions = require('./descriptions.json');
 const clients = require('./clients.json');
+const domainBlacklist = require('./domainBlacklist.json');
+const severityLevels = require('./severityLevels.json');
 
 const MAX_ITEMS = 100;
 const INITIAL_ITEMS = 20;
 const GEN_RATE = 0.2;
+const FIELD_REQUIREMENTS = {
+    'label': {
+        required: true,
+        minLength: 4,
+        maxLength: 64
+    },
+    'description': {
+        required: false,
+        minLength: 8,
+        maxLength: 256
+    },
+    'clientName': {
+        required: true,
+        minLength: 1,
+        maxLength: 64
+    },
+    'clientEmail': {
+        required: true,
+        minLength: 5,
+        maxLength: 64
+    },
+    'severity': {
+        required: true,
+        allowedValues: severityLevels
+    }
+}
 
 const FeedItem = new Immutable.Record({
     id: undefined,
@@ -15,7 +43,7 @@ const FeedItem = new Immutable.Record({
     description: '',
     clientName: '',
     clientEmail: '',
-    severity: 0,
+    severity: undefined,
     createdDate: new Date()
 });
 
@@ -67,15 +95,58 @@ class FeedManager {
             description: _.sample(descriptions),
             clientName: client,
             clientEmail: `${client.toLowerCase()}@${_.sample(clients.domains)}`,
-            severity: Math.floor(Math.random() * 5)
+            severity: _.sample(severityLevels)
         });
 
         return this.addRecord(newRecord);
     }
 
     generateRecord(record) {
-        // TODO: add validation
+        this.validateRecord(record);
         return this.addRecord(new FeedItem(record));
+    }
+
+    validateRecord(record) {
+        for (field in FIELD_REQUIREMENTS) {
+            this.validateField(field, record[field]);
+        }
+
+        // Additional validation
+        this.validateEmail(record['clientEmail']);
+    }
+
+    validateField(fieldName, fieldValue) {
+        const requirements = FIELD_REQUIREMENTS[fieldName];
+        if (requirements.required && !fieldValue) {
+            throw new Error(`Field "${fieldName}" cannot be blank.`);
+        }
+
+        if (fieldValue) {
+            if (requirements.minLength && requirements.minLength > fieldValue.length) {
+                throw new Error(`Field "${fieldName}" must be at least ${requirements.minLength} characters.`);
+            }
+
+            if (requirements.maxLength && requirements.maxLength < fieldValue.length) {
+                throw new Error(`Field "${fieldName}" must be at most ${requirements.maxLength} characters.`);
+            }
+
+            if (requirements.allowedValues && !requirements.allowedValues.includes(fieldValue)) {
+                const allowedString = requirements.allowedValues.join(', ');
+                throw new Error(`Field "${fieldName}" can only be one of these values: ${allowedString}.`);
+            }
+        }
+    }
+
+    validateEmail(emailAddress) {
+        const splitAddress = emailAddress.split('@');
+        if (splitAddress.length != 2) {
+            throw new Error(`Field "clientEmail" has an invalid value.`);
+        }
+
+        if (domainBlacklist.includes(splitAddress[1])) {
+            const blacklistString = domainBlacklist.join(', ');
+            throw new Error(`Field "clientEmail" should only accept company email addresses. This excludes email addresses ending in any of these domains: ${blacklistString}.`);
+        }
     }
 
     addRecord(record) {
