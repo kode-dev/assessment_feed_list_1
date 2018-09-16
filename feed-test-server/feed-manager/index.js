@@ -1,14 +1,14 @@
-import _ from 'lodash';
-import Immutable, { List, Map, Record } from 'immutable';
+const _ = require('lodash');
+const Immutable = require('immutable');
 
-import labels from './labels.json';
-import descriptions from './descriptions.json';
-import clients from './descriptions.json';
+const labels = require('./labels.json');
+const descriptions = require('./descriptions.json');
+const clients = require('./descriptions.json');
 
 const MAX_ITEMS = 100;
 const GEN_RATE = 0.2;
 
-const FeedItem = new Record({
+const FeedItem = new Immutable.Record({
     id: undefined,
     label: '',
     description: '',
@@ -21,17 +21,14 @@ const FeedItem = new Record({
 
 export default class FeedManager {
     constructor() {
-        this.feedItems = new List();
+        this.feedItems = new Immutable.List();
         this.interval = null;
     }
 
-    getFeedItems({ begin, end, limit }) {
-        // TODO: Add validation of query params
-        const beginDate = begin ? new Date(begin) : null;
-        const endDate = end ? new Date(end) : null;
-        if ((!limit) && (limit !== 0)) {
-            limit = MAX_ITEMS;
-        }
+    getFeedItems(query) {
+        const beginDate = query.begin ? new Date(query.begin) : null;
+        const endDate = query.end ? new Date(query.end) : null;
+        const limit = query.limit ? query.limit : MAX_ITEMS;
 
         return this.feedItems
             .filter((item) => {
@@ -75,22 +72,17 @@ export default class FeedManager {
         return this.addRecord(newRecord);
     }
 
-    generateRecord({ label, description, clientName, clientEmail, severity }) {
-        const newRecord = {
-            label,
-            description,
-            clientName,
-            clientEmail,
-            severity
-        };
-
+    generateRecord(record) {
         // TODO: add validation
-        return this.addRecord(new FeedItem(newRecord));
+        return this.addRecord(new FeedItem(record));
     }
 
     addRecord(record) {
-        record = record.set('createdDate', new Date());
-        record = record.set('id', Math.floor(Math.random() * 10000000));
+        record = record.merge({
+            createdDate: new Date(),
+            id: Math.floor(Math.random() * 10000000)
+        });
+
         feedItems.push(record);
 
         // FIFO

@@ -12,6 +12,6 @@
     "cors": "^2.8.4",
     "express": "^4.15.2",
     "lodash": "^4.17.10",
-    "immutable": "^4.0.0"
+    "immutable": "^3.8.2"
   }
 }
