@@ -1,0 +1,17 @@
+{
+  "name": "feed-test-server",
+  "version": "1.0.0",
+  "main": "app.js",
+  "author": "ndinh27",
+  "license": "private",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "cors": "^2.8.4",
+    "express": "^4.15.2",
+    "lodash": "^4.17.10",
+    "immutable": "^4.0.0"
+  }
+}
