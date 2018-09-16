@@ -36,7 +36,6 @@ app.get('/feed_items', function(req, res, next) {
         } else {
             parsedQuery.limit = parseInt(query.limit);
         }
-
         res.send(manager.getFeedItems(parsedQuery));;
     }
     catch (error) {

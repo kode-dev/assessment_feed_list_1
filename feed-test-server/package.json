@@ -1,6 +1,9 @@
 {
   "name": "feed-test-server",
   "version": "1.0.0",
+  "engines": {
+    "node": ">=8.5"
+  },
   "main": "app.js",
   "author": "ndinh27",
   "license": "private",
