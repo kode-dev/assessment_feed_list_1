@@ -8,7 +8,7 @@ AcmeCorps' case agents need a way to see the latest submitted cases.
 
 We'd like your help to display the **last 20 submitted** AcmeCorp cases, which should be kept **up-to-date within the last 10 seconds**.
 
-This repository contains This repo contains components to render a feed of support cases, along with a Test API to pull more cases.
+This repository contains components to render a feed of support cases, along with a dummy API to pull more cases.
 
 ## Layout
 * Landing Page
