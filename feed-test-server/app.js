@@ -2,15 +2,15 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const FeedManager = require('./feed-manager');
-
+const cors = require('cors')
 
 // Set up the test server
 app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded( {extended: true} ));
+app.use(cors({credentials: true, origin: true}));
 
 const PORT = 3000;
-
 
 const manager = new FeedManager();
 manager.start();
