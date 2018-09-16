@@ -3,9 +3,10 @@ const Immutable = require('immutable');
 
 const labels = require('./labels.json');
 const descriptions = require('./descriptions.json');
-const clients = require('./descriptions.json');
+const clients = require('./clients.json');
 
 const MAX_ITEMS = 100;
+const INITIAL_ITEMS = 20;
 const GEN_RATE = 0.2;
 
 const FeedItem = new Immutable.Record({
@@ -19,9 +20,10 @@ const FeedItem = new Immutable.Record({
 });
 
 
-export default class FeedManager {
+class FeedManager {
     constructor() {
         this.feedItems = new Immutable.List();
+        _.times(INITIAL_ITEMS, this.generateRandomRecord.bind(this));
         this.interval = null;
     }
 
@@ -39,12 +41,12 @@ export default class FeedManager {
                 }
                 return true;
             })
-            .slice(limit)
+            .slice(0, limit)
             .toJS();
     }
 
     start() {
-        this.interval = setInterval(this.maybeGenerateRandomRecord, 1000);
+        this.interval = setInterval(this.maybeGenerateRandomRecord.bind(this), 1000);
     }
 
     stop() {
@@ -63,7 +65,7 @@ export default class FeedManager {
         const client = _.sample(clients.names);
         const newRecord = new FeedItem({
             label: _.sample(labels),
-            description: _.sample(descriptions)
+            description: _.sample(descriptions),
             clientName: client,
             clientEmail: `${client.toLowerCase()}@${_.sample(clients.domains)}`,
             severity: Math.floor(Math.random() * 5)
@@ -82,14 +84,16 @@ export default class FeedManager {
             createdDate: new Date(),
             id: Math.floor(Math.random() * 10000000)
         });
-
-        feedItems.push(record);
+        let feedItems = this.feedItems;
+        feedItems = feedItems.push(record);
 
         // FIFO
         if (feedItems.size > MAX_ITEMS) {
             feedItems = feedItems.slice(-MAX_ITEMS);
         }
+        this.feedItems = feedItems;
         return record;
     }
-
 }
+
+module.exports = FeedManager;
