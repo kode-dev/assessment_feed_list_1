@@ -19,7 +19,6 @@ const FeedItem = new Immutable.Record({
     createdDate: new Date()
 });
 
-
 class FeedManager {
     constructor() {
         this.feedItems = new Immutable.List();
