@@ -28,6 +28,6 @@ A case will contain:
 * **NavigationBar**: Navigation bar that shows on both the landing page as well as the Case Detail Page.
 * **React-Bootstrap Components**: A set of common base components that you can use if you need to.
 
-## AcmeAPI Test Server Setup
+## Getting Started
 
 ## Testing
