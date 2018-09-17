@@ -2,7 +2,8 @@
   "globals": {
     "fetch": false,
     "Request": false,
-    "window": false
+    "window": false,
+    "document": false
   },
   "experimentalDecorators": false,
   "extends": "airbnb",
