@@ -1,16 +1,17 @@
-import React, { Component } from 'react';
-import { ListGroupItem } from 'react-bootstrap'
+import React from 'react';
+import { ListGroupItem } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
-// props:
-// - case
-class CaseListItem extends Component {
-  render() {
-    return (
-      <ListGroupItem header={this.props.case.label}>
-      	{`${this.props.case.id} ${this.props.case.clientEmail}`}
-      </ListGroupItem>
-    );
-  }
+function CaseListItem({ supportCase }) {
+  return (
+    <ListGroupItem header={supportCase.label}>
+      {`${supportCase.id} ${supportCase.clientEmail}`}
+    </ListGroupItem>
+  );
 }
+
+CaseListItem.propTypes = {
+  supportCase: PropTypes.object.isRequired,
+};
 
 export default CaseListItem;

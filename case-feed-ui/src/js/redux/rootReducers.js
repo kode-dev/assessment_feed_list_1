@@ -4,5 +4,5 @@ import caseList from './reducers/caseListReducer';
 
 export default combineReducers({
   caseList,
-  routing
+  routing,
 });

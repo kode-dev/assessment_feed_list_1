@@ -3,10 +3,8 @@ import { createSelector } from 'reselect';
 
 const selfSelector = createSelector(
   state => state.caseList,
-  state => {
-  	return state
-  }
-)
-const Selector = state => (selfSelector(state));
+  state => state,
+);
+const Selector = state => selfSelector(state);
 
 export default Selector;

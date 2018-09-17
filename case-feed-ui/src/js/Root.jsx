@@ -4,20 +4,13 @@ import { Provider } from 'react-redux';
 import { HashRouter as Router } from 'react-router-dom';
 
 export default class Root extends Component {
-  get content() { // ???????
-    return (
-      <Router>
-        {this.props.routes}
-      </Router>
-    );
+  get content() {
+    // ???????
+    return <Router>{this.props.routes}</Router>;
   }
 
   render() {
-    return (
-      <Provider store={this.props.store}>
-        {this.content}
-      </Provider>
-    );
+    return <Provider store={this.props.store}>{this.content}</Provider>;
   }
 }
 
