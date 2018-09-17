@@ -1,17 +1,9 @@
 {
-  "name": "react-redux-boilerplate",
+  "name": "kodescreen-assessment-a",
   "version": "0.9.36",
-  "description": "React Redux Boilerplate is a workflow boilerplate that make life easier for developers by providing a virtual development environment and production ready build process framework out of the box.",
+  "description": "React redux assessment for front-end / fullstack candidates.",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dashboard -p 3300 -c red -t dashboard -- node bin/commands.js dev",
-    "build": "cross-env NODE_ENV=production node bin/commands.js build",
-    "build:release": "cross-env NODE_ENV=release node bin/commands.js build",
-    "clean": "rimraf docroot",
-    "test": "jest --no-cache",
-    "lint": "node bin/commands.js lint",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook -o docroot/doc",
-    "start": "NODE_ENV=production node bin/commands.js build"
+    "dev": "cross-env NODE_ENV=development webpack-dashboard -p 3300 -c red -t dashboard -- node bin/commands.js dev"
   },
   "repository": {
     "type": "git",
@@ -46,7 +38,6 @@
     "jest-cli": "^20.0.4",
     "postcss-cssnext": "^3.0.2",
     "precss": "^2.0.0",
-    "rimraf": "^2.6.1",
     "shelljs": "^0.7.8",
     "webpack": "^3.2.0",
     "webpack-dashboard": "^0.4.0",
