@@ -8,9 +8,8 @@ import routes from './routes';
 import Root from './Root';
 import configureStore from './redux/configureStore';
 
-
 const hashHistory = createHistory();
-const store = configureStore(initialState, hashHistory);
+const store = configureStore({}, hashHistory);
 const history = syncHistoryWithStore(hashHistory, store);
 
 // Render the React application to the DOM

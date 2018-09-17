@@ -8,15 +8,16 @@ class CaseList extends Component {
     this.props.fetchCases();
   }
 
-  renderCaseItem(item) {
-    return (<CaseListItem case={supportCase} />);
+  renderCaseItem(supportCase, index) {
+    return (<CaseListItem key={index} case={supportCase} />);
   }
 
   render() {
-    if (!this.props.cases || this.props.cases.isEmpty()) {
-      return; //TODO: render empty view
+    if (!this.props.cases || this.props.cases.length == 0) {
+      return (<div>No cases to render.</div>)
     }
-    let cases = this.props.cases.map(renderCaseItem);
+    
+    let cases = this.props.cases.map(this.renderCaseItem.bind(this));
 
     return (
     	<div>

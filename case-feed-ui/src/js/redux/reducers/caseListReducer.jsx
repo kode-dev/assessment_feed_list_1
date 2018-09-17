@@ -75,7 +75,6 @@ export const reducers = {
 	    };
 	},
 	[Actions.Case.list.FETCH_CASES + '_SUCCESS']: (state, { payload }) => {
-		console.log('received cases: ' + payload)
 		return {
 			...state,
 			cases: payload,
@@ -83,7 +82,6 @@ export const reducers = {
 	    };
 	},
 	[Actions.Case.list.FETCH_CASES + '_ERROR']: (state, { payload }) => {
-		console.log('received cases error: ' + payload)
 		return {
 			...state,
 			fetchingCases: false
