@@ -69,3 +69,5 @@ npm install
 npm run-script dev
 ```
 This will allow you to see the UI at **localhost:8080** on your browser.
+
+All the best! Don't hesitate to ask your interviewer any questions you have.
