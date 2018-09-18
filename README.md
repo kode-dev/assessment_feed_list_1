@@ -14,6 +14,8 @@ This repository contains components to render a feed of support cases, along wit
 You'll need [NodeJS and NPM](https://www.npmjs.com/get-npm) to be able to run this project. 
 
 ## Submission
+All of your changes should take place inside the case-feed-ui directory. There's no need to touch / modify the server code. It exists simply to give you the data you need to render & update the front-end.
+
 Submit your work by pushing to a branch titled: 'case-feed-20'.
 
 You can create a branch at the start:
