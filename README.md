@@ -60,7 +60,7 @@ cd feed-test-server
 npm install
 npm start
 ```
-This will start the application server on port 3000.
+This will start the application server at **localhost:3000**.
 
 ### Running the Front-end Development Environment
 
