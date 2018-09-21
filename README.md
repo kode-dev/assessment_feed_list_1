@@ -10,8 +10,6 @@ We'd like your help to display the **last 20 submitted** AcmeCorp cases, which s
 
 This repository contains components to render a feed of support cases, along with a dummy API to fetch these cases from a data store. 
 
-## Your Environment
-You'll need [NodeJS and NPM](https://www.npmjs.com/get-npm) to be able to run this project. 
 
 ## Getting Started
 ### Running the test server
@@ -35,10 +33,13 @@ npm run-script dev
 ```
 This will allow you to see the UI at **localhost:8080** on your browser.
 
+### Your Environment
+You'll need [NodeJS and NPM](https://www.npmjs.com/get-npm) to be able to run this project. 
+
 All the best! Don't hesitate to ask your interviewer any questions you have.
 
 ## Submission
-All of your changes should take place inside the case-feed-ui directory. There's no need to touch / modify the server code. It exists simply to give you the data you need to render & update the front-end.
+**All of your changes should take place inside the case-feed-ui directory. There's no need to touch / modify the server code.** It exists simply to give you the data you need to render & update the front-end.
 
 Submit your work by pushing to a branch titled: 'case-feed-20'.
 
