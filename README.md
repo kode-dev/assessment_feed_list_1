@@ -13,6 +13,30 @@ This repository contains components to render a feed of support cases, along wit
 ## Your Environment
 You'll need [NodeJS and NPM](https://www.npmjs.com/get-npm) to be able to run this project. 
 
+## Getting Started
+### Running the test server
+We've implemented a test server to represent the backend and database for this problem. 
+
+To start the server run these commands from the base directory:
+```
+cd feed-test-server
+npm install
+npm start
+```
+This will start the application server at **localhost:3000**.
+
+### Running the Front-end Development Environment
+
+To start the front-end development server, run these commands from the base directory:
+```
+cd case-feed-ui
+npm install
+npm run-script dev
+```
+This will allow you to see the UI at **localhost:8080** on your browser.
+
+All the best! Don't hesitate to ask your interviewer any questions you have.
+
 ## Submission
 All of your changes should take place inside the case-feed-ui directory. There's no need to touch / modify the server code. It exists simply to give you the data you need to render & update the front-end.
 
@@ -49,27 +73,3 @@ A support case contains:
 * **CaseList**: This is the list of CaseListItems.
 * **NavigationBar**: Navigation bar that shows on both the landing page as well as the Case Detail Page.
 * [**React-Bootstrap Components**](https://react-bootstrap.github.io/components/alerts/): A set of common base components that you can use if you need to.
-
-## Getting Started
-### Running the test server
-We've implemented a test server to represent the backend and database for this problem. 
-
-To start the server run these commands from the base directory:
-```
-cd feed-test-server
-npm install
-npm start
-```
-This will start the application server at **localhost:3000**.
-
-### Running the Front-end Development Environment
-
-To start the front-end development server, run these commands from the base directory:
-```
-cd case-feed-ui
-npm install
-npm run-script dev
-```
-This will allow you to see the UI at **localhost:8080** on your browser.
-
-All the best! Don't hesitate to ask your interviewer any questions you have.
