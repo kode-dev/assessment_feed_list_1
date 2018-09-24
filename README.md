@@ -6,7 +6,7 @@ AcmeCorp sells a software product called AcmeForce. When their end-users have a 
 
 AcmeCorps' support agents need a way to see the latest submitted cases.
 
-We'd like your help to display the **last 20 submitted** AcmeCorp cases, which should be kept **up-to-date within the last 10 seconds**.
+We'd like your help to display the **latest** AcmeCorp cases, so that the support engineers have an up-to-date list of cases to pull from. 
 
 This repository contains components to render a feed of support cases, along with a dummy API to fetch these cases from a data store. 
 
@@ -29,7 +29,7 @@ To start the front-end development server, run these commands from the base dire
 ```
 cd case-feed-ui
 npm install
-npm run-script dev
+npm start
 ```
 This will allow you to see the UI at **localhost:8080** on your browser.
 
