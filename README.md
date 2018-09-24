@@ -73,4 +73,8 @@ A support case contains:
 * **CaseListItem**: This represents a single case to be rendered in a list.
 * **CaseList**: This is the list of CaseListItems.
 * **NavigationBar**: Navigation bar that shows on both the landing page as well as the Case Detail Page.
-* [**React-Bootstrap Components**](https://react-bootstrap.github.io/components/alerts/): A set of common base components that you can use if you need to.
+
+## References You May / May Not Need
+* [Thinking in React] (https://reactjs.org/docs/thinking-in-react.html)
+* [Redux Primer] (https://www.reddit.com/r/reactjs/comments/4npzq5/confused_redux_or_mobx/d46k2bl/)
+* [**React-Bootstrap Components**](https://react-bootstrap.github.io/components/alerts/): A set of common base components that you can use if you need to tweak / add to the UI.
