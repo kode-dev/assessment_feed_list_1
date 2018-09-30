@@ -10,6 +10,7 @@ We'd like your help to display the **latest** AcmeCorp cases, so that the suppor
 
 This repository contains components to render a feed of support cases, along with a dummy API to fetch these cases from a data store. 
 
+Feel free to ask your interviewer any questions you may have as you work through this.
 
 ## Getting Started
 ### Running the test server
