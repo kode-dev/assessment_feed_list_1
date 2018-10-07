@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { ListGroup, Button } from 'react-bootstrap';
+import { ListGroup, Button, FormGroup, FormControl } from 'react-bootstrap';
+import moment from 'moment';
 import PropTypes from 'prop-types';
 import CaseListItem from './CaseListItem';
 
@@ -7,11 +8,18 @@ class CaseList extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      item: null,
+      day: 1,
+      showFilter: false,
+      valid: false,
+    };
+    this.toggleFilter = this.toggleFilter.bind(this);
     this.getUpToDate = this.getUpToDate.bind(this);
+    this.getLimitedItem = this.getLimitedItem.bind(this);
+    this.getDay = this.getDay.bind(this);
   }
   componentWillMount() {
-    // let now = (new Date()).getTime();
-    // this.props.getUpToDateCases(now);
     this.props.fetchCases();
   }
 
@@ -20,10 +28,36 @@ class CaseList extends Component {
   }
 
   getUpToDate() {
-    let now = new Date();
-    let begin = now.getTime();
-    let yesterday = now.setDate(now.getDate() - 1);
-    this.props.getUpToDateCases(begin, yesterday);
+    const now = moment();
+    const daysBefore = moment().subtract(this.state.day || 1, 'days').startOf('day');
+    this.props.getUpToDateCases(now.valueOf(), daysBefore.valueOf(), this.state.item);
+  }
+
+  getLimitedItem(e) {
+    this.setState({
+      item: e.target.value,
+    });
+    this.isDataValid();
+  }
+
+  getDay(e) {
+    this.setState({
+      day: e.target.value,
+    });
+    this.isDataValid();
+  }
+
+  toggleFilter() {
+    this.setState({
+      showFilter: !this.state.showFilter,
+    });
+  }
+  isDataValid() {
+    if (this.state.day && this.state.item) {
+      this.setState({
+        valid: true,
+      });
+    }
   }
 
   render() {
@@ -36,7 +70,22 @@ class CaseList extends Component {
     return (
       <div>
         <h1>Cases</h1>
-        <Button bsStyle="primary" onClick={this.getUpToDate}>Get Up-to-date cases</Button>
+        <div>
+          <Button bsStyle="primary" onClick={this.toggleFilter}>Get Up-to-date cases</Button>
+          {this.state.showFilter && <div className="filter-group">
+            <span style={{ padding: '0 5px' }}>Update list cases from </span>
+            <FormGroup controlId="formControlsSelect" style={{ display: 'inline-block' }}>
+              <FormControl componentClass="select" placeholder="select" onChange={this.getDay}>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </FormControl>
+            </FormGroup>
+            <span style={{ padding: '0 5px' }}>days ago with litmited</span>
+            <input type="number" onChange={this.getLimitedItem} /><span style={{ padding: '0 5px' }}>items</span>
+            <Button bsStyle="primary" disabled={!this.state.valid} onClick={this.getUpToDate}>Confirm</Button>
+          </div>}
+        </div>
         <ListGroup>{cases}</ListGroup>
       </div>
     );
@@ -46,7 +95,7 @@ class CaseList extends Component {
 CaseList.propTypes = {
   fetchCases: PropTypes.func.isRequired,
   cases: PropTypes.arrayOf(Object).isRequired,
-  getUpToDateCases: PropTypes.func
+  getUpToDateCases: PropTypes.func,
 };
 
 export default CaseList;

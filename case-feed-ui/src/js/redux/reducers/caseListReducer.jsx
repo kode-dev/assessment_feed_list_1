@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import CaseApi from 'api/caseApi';
+import CaseApi from '../../api/caseApi';
 import Actions from '../actions';
 
 export function createAsyncAction(type, fn) {
@@ -55,8 +55,8 @@ export const addCase = createAsyncAction(Actions.Case.list.ADD_CASE, newCase =>
   ),
 );
 
-export const getUpToDateCases = createAsyncAction(Actions.Case.list.FETCH_UP_TO_DATE_CASES, (today , yesterday) =>
-  CaseApi.getUpToDateCaseList(today, yesterday).then(
+export const getUpToDateCases = createAsyncAction(Actions.Case.list.FETCH_UP_TO_DATE_CASES, (today, daysBefore, limitItem) =>
+  CaseApi.getUpToDateCaseList(daysBefore, today, limitItem).then(
     (response) => {
       if (response.error) {
         return null;
@@ -71,22 +71,22 @@ export const getUpToDateCases = createAsyncAction(Actions.Case.list.FETCH_UP_TO_
 export const actions = {
   fetchCases,
   addCase,
-  getUpToDateCases
+  getUpToDateCases,
 };
 
 export const reducers = {
   [Actions.Case.list.FETCH_CASES]: state => ({
     ...state,
-    fetchingCases: true
+    fetchingCases: true,
   }),
   [`${Actions.Case.list.FETCH_CASES}_SUCCESS`]: (state, { payload }) => ({
     ...state,
     cases: payload,
-    fetchingCases: false
+    fetchingCases: false,
   }),
   [`${Actions.Case.list.FETCH_CASES}_ERROR`]: state => ({
     ...state,
-    fetchingCases: false
+    fetchingCases: false,
   }),
   [`${Actions.Case.list.FETCH_UP_TO_DATE_CASES}_SUCCESS`]: (state, { payload }) => ({
     ...state,
@@ -95,7 +95,7 @@ export const reducers = {
   }),
   [`${Actions.Case.list.FETCH_UP_TO_DATE_CASES}_ERROR`]: state => ({
     ...state,
-    fetchingCases: false
+    fetchingCases: false,
   }),
 };
 

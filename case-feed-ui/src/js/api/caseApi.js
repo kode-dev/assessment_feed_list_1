@@ -15,12 +15,21 @@ class CaseApi {
       credentials: 'include',
     });
     return fetchResponse(request);
-  };
+  }
 
-  static getUpToDateCaseList(today, yesterday) {
-    const request = new Request(`${getBaseUrl()}feed_items?limit=10&begin=${yesterday}&end=${today}`, {
+  static getUpToDateCaseList(begin, end, limit = 20) {
+    const request = new Request(`${getBaseUrl()}feed_items?limit=${limit}&begin=${begin}&end=${end}`, {
       method: 'GET',
       credentials: 'include',
+    });
+    return fetchResponse(request);
+  }
+
+  static postCase(report) {
+    const request = new Request(`${getBaseUrl()}feed_items`, {
+      method: 'POST',
+      credentials: 'include',
+      body: JSON.stringify(report),
     });
     return fetchResponse(request);
   }
