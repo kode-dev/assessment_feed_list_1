@@ -55,24 +55,47 @@ export const addCase = createAsyncAction(Actions.Case.list.ADD_CASE, newCase =>
   ),
 );
 
+export const getUpToDateCases = createAsyncAction(Actions.Case.list.FETCH_UP_TO_DATE_CASES, now =>
+  CaseApi.getUpToDateCaseList(now).then(
+    (response) => {
+      if (response.error) {
+        return null;
+      }
+      return response;
+    },
+    (error) => {
+      throw error;
+    },
+  ),
+);
 export const actions = {
   fetchCases,
   addCase,
+  getUpToDateCases
 };
 
 export const reducers = {
   [Actions.Case.list.FETCH_CASES]: state => ({
     ...state,
-    fetchingCases: true,
+    fetchingCases: true
   }),
   [`${Actions.Case.list.FETCH_CASES}_SUCCESS`]: (state, { payload }) => ({
     ...state,
     cases: payload,
-    fetchingCases: false,
+    fetchingCases: false
   }),
   [`${Actions.Case.list.FETCH_CASES}_ERROR`]: state => ({
     ...state,
+    fetchingCases: false
+  }),
+  [`${Actions.Case.list.FETCH_UP_TO_DATE_CASES}_SUCCESS`]: (state, { payload }) => ({
+    ...state,
+    cases: payload,
     fetchingCases: false,
+  }),
+  [`${Actions.Case.list.FETCH_UP_TO_DATE_CASES}_ERROR`]: state => ({
+    ...state,
+    fetchingCases: false
   }),
 };
 
