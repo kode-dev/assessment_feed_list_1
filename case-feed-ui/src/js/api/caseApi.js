@@ -17,8 +17,8 @@ class CaseApi {
     return fetchResponse(request);
   };
 
-  static getUpToDateCaseList(begin) {
-    const request = new Request(`${getBaseUrl()}feed_items?begin=${begin}`, {
+  static getUpToDateCaseList(today, yesterday) {
+    const request = new Request(`${getBaseUrl()}feed_items?limit=10&begin=${yesterday}&end=${today}`, {
       method: 'GET',
       credentials: 'include',
     });

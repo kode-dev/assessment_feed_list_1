@@ -55,8 +55,8 @@ export const addCase = createAsyncAction(Actions.Case.list.ADD_CASE, newCase =>
   ),
 );
 
-export const getUpToDateCases = createAsyncAction(Actions.Case.list.FETCH_UP_TO_DATE_CASES, now =>
-  CaseApi.getUpToDateCaseList(now).then(
+export const getUpToDateCases = createAsyncAction(Actions.Case.list.FETCH_UP_TO_DATE_CASES, (today , yesterday) =>
+  CaseApi.getUpToDateCaseList(today, yesterday).then(
     (response) => {
       if (response.error) {
         return null;
